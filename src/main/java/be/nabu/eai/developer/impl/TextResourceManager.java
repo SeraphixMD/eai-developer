@@ -19,12 +19,10 @@ package be.nabu.eai.developer.impl;
 
 import java.io.IOException;
 
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
 import be.nabu.eai.developer.MainController;
 import be.nabu.eai.developer.api.ResourceManager;
 import be.nabu.eai.developer.api.ResourceManagerInstance;
+import be.nabu.eai.developer.util.AceEditorKeybindHelper;
 import be.nabu.jfx.control.ace.AceEditor;
 import be.nabu.libs.resources.api.ReadableResource;
 import be.nabu.libs.resources.api.Resource;
@@ -33,19 +31,22 @@ import be.nabu.utils.io.IOUtils;
 import be.nabu.utils.io.api.ByteBuffer;
 import be.nabu.utils.io.api.ReadableContainer;
 import be.nabu.utils.io.api.WritableContainer;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
 
 public class TextResourceManager implements ResourceManager {
 
 	@Override
 	public ResourceManagerInstance manage(Resource resource) {
 		if (resource.getContentType().startsWith("text/") || resource.getContentType().equals("application/xml")
-			 || resource.getContentType().equals("application/json")
-			 || resource.getContentType().equals("application/javascript")) {
+				|| resource.getContentType().equals("application/json")
+				|| resource.getContentType().equals("application/javascript")) {
 			return new TextResourceManagerInstance(resource);
 		}
 		return null;
 	}
-	
+
 	public static class TextResourceManagerInstance implements ResourceManagerInstance {
 
 		private Resource resource;
@@ -62,13 +63,11 @@ public class TextResourceManager implements ResourceManager {
 				try {
 					WritableContainer<ByteBuffer> writable = ((WritableResource) resource).getWritable();
 					try {
-						writable.write(IOUtils.wrap(content.getBytes("UTF-8"), true));	
-					}
-					finally {
+						writable.write(IOUtils.wrap(content.getBytes("UTF-8"), true));
+					} finally {
 						writable.close();
 					}
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					throw new RuntimeException(e);
 				}
 			}
@@ -78,20 +77,18 @@ public class TextResourceManager implements ResourceManager {
 		public Node getView() {
 			if (editor == null) {
 				String content;
-				
+
 				try {
 					ReadableContainer<ByteBuffer> readable = ((ReadableResource) resource).getReadable();
 					try {
 						content = new String(IOUtils.toBytes(readable), "UTF-8");
-					}
-					finally {
+					} finally {
 						readable.close();
 					}
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					throw new RuntimeException(e);
 				}
-				editor = new AceEditor();
+				editor = AceEditorKeybindHelper.createConfiguredEditor();
 				editor.setContent(resource.getContentType(), content);
 				editor.subscribe(AceEditor.CHANGE, new EventHandler<Event>() {
 					@Override
@@ -104,8 +101,7 @@ public class TextResourceManager implements ResourceManager {
 					public void handle(Event arg0) {
 						try {
 							MainController.getInstance().save();
-						}
-						catch (IOException e) {
+						} catch (IOException e) {
 							throw new RuntimeException(e);
 						}
 					}
@@ -113,7 +109,7 @@ public class TextResourceManager implements ResourceManager {
 			}
 			return editor.getWebView();
 		}
-		
+
 	}
 
 }

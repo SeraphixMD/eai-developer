@@ -11,70 +11,20 @@
         <menus>
           <Menu mnemonicParsing="false" text="File" fx:id="mnuFile">
             <items>
-              <MenuItem fx:id="mniSave" mnemonicParsing="false" text="Save">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-                  <MenuItem fx:id="mniSaveAll" mnemonicParsing="false" text="Save All">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
-                     </accelerator>
-                  </MenuItem>
-                  <MenuItem fx:id="mniRun" mnemonicParsing="false" text="Run">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-                  <MenuItem fx:id="mniClose" mnemonicParsing="false" text="Close">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-                  <MenuItem fx:id="mniCloseAll" mnemonicParsing="false" text="Close All">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
-                     </accelerator>
-                  </MenuItem>
-                  <MenuItem fx:id="mniCloseOther" mnemonicParsing="false" text="Close Other">
-                     <accelerator>
-                        <KeyCodeCombination alt="DOWN" code="W" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
-                     </accelerator>
-                  </MenuItem>
-                  <MenuItem fx:id="mniLocate" mnemonicParsing="false" text="Locate In Tree">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="L" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator>
-                  </MenuItem>
-                  <MenuItem fx:id="mniFind" mnemonicParsing="false" text="Find In Tree">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator>
-                  </MenuItem>
-                  <MenuItem fx:id="mniGrep" mnemonicParsing="false" text="Find In Files">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
-                     </accelerator>
-                  </MenuItem>
-                  <MenuItem fx:id="mniReconnectSsh" mnemonicParsing="false" text="Reconnect SSH Tunnel">
-                  </MenuItem>
-                  <MenuItem fx:id="mniServerLog" mnemonicParsing="false" text="View Server Log">
-                  <accelerator>
-                        <KeyCodeCombination alt="UP" code="K" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator>
-                  </MenuItem>
-                  <MenuItem fx:id="mniTodos" mnemonicParsing="false" text="View Todos">
-                  <accelerator>
-                        <KeyCodeCombination alt="UP" code="J" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator>
-                  </MenuItem>
-                  <MenuItem fx:id="mniDetach" mnemonicParsing="false" text="Detach Current">
-                  <accelerator>
-                        <KeyCodeCombination alt="UP" code="T" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator>
-                  </MenuItem>
-                  <MenuItem fx:id="mniMaximize" mnemonicParsing="false" text="Maximize">
-                  <accelerator>
-                        <KeyCodeCombination alt="UP" code="SPACE" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator>
-                  </MenuItem>
+              <MenuItem fx:id="mniSave" mnemonicParsing="false" text="Save" />
+                  <MenuItem fx:id="mniSaveAll" mnemonicParsing="false" text="Save All" />
+                  <MenuItem fx:id="mniRun" mnemonicParsing="false" text="Run" />
+                  <MenuItem fx:id="mniClose" mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="mniCloseAll" mnemonicParsing="false" text="Close All" />
+                  <MenuItem fx:id="mniCloseOther" mnemonicParsing="false" text="Close Other" />
+                  <MenuItem fx:id="mniLocate" mnemonicParsing="false" text="Locate In Tree" />
+                  <MenuItem fx:id="mniFind" mnemonicParsing="false" text="Find In Tree" />
+                  <MenuItem fx:id="mniGrep" mnemonicParsing="false" text="Find In Files" />
+                  <MenuItem fx:id="mniReconnectSsh" mnemonicParsing="false" text="Reconnect SSH Tunnel" />
+                  <MenuItem fx:id="mniServerLog" mnemonicParsing="false" text="View Server Log" />
+                  <MenuItem fx:id="mniTodos" mnemonicParsing="false" text="View Todos" />
+                  <MenuItem fx:id="mniDetach" mnemonicParsing="false" text="Detach Current" />
+                  <MenuItem fx:id="mniMaximize" mnemonicParsing="false" text="Maximize" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -125,10 +75,10 @@
 		                              <TabPane fx:id="tabMisc" prefHeight="93.0" prefWidth="109.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 		                              	<Tab text="Result" fx:id="tabPipeline">
 		                              	<ScrollPane prefHeight="200.0" prefWidth="200.0" fx:id="scrPipeline" fitToWidth="true">
-				                           <content>
-				                              <AnchorPane fx:id="ancPipeline" />
-				                           </content>
-				                        </ScrollPane>
+			                           <content>
+			                              <AnchorPane fx:id="ancPipeline" />
+			                           </content>
+			                        </ScrollPane>
 		                              	</Tab>
 		                              </TabPane>
 		                           </children>
@@ -136,13 +86,13 @@
 		                    </items>
 		                  </SplitPane>
 		                  <HBox fx:id="hbxStatistics" VBox.vgrow="NEVER" prefWidth="111.0">
-		            		<children></children>      
+		            		<children></children>
 		                  </HBox>
 	                </children>
                 </VBox>
                </children>
             </AnchorPane>
-   
+
      </items>
    </SplitPane>
    </children>

@@ -454,6 +454,15 @@ Put the hardreset on the pane you give to the structureguimanager to draw everyt
 	-fx-text-fill: -theme-primary-text;
 }
 
+/* local dev build indicator */
+.local-dev-indicator {
+	-fx-background-color: #ff6b35;
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
+	-fx-font-size: 11px;
+	-fx-background-radius: 3px;
+}
+
 /* repository view */
 #ancBrowser, #ancLeft * {
 	-fx-background-color: -theme-primary-medium;
