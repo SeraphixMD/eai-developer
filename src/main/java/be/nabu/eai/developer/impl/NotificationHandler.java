@@ -108,13 +108,13 @@ public class NotificationHandler {
 		switch(severity) {
 			case CRITICAL:
 			case ERROR:
-				box.getChildren().add(MainController.loadGraphic("dialog/dialog-error.png"));
+				box.getChildren().add(MainController.loadGraphic("dialog/dialog-error.png", 32));
 			break;
 			case WARNING:
-				box.getChildren().add(MainController.loadGraphic("dialog/dialog-warning.png"));
+				box.getChildren().add(MainController.loadGraphic("dialog/dialog-warning.png", 32));
 			break;
 			default:
-				box.getChildren().add(MainController.loadGraphic("dialog/dialog-information.png"));
+				box.getChildren().add(MainController.loadGraphic("dialog/dialog-information.png", 32));
 			break;
 		}
 		Label label = new Label(message);

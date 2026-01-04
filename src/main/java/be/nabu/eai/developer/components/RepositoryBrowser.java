@@ -635,24 +635,27 @@ public class RepositoryBrowser extends BaseComponent<MainController, Tree<Entry>
 			}
 			// we are at the root and we are not editable, add a lock icon
 			if (parent != null && parent.getParent() == null && !itemProperty.get().isEditable()) {
-				box.setMaxWidth(44);
-				box.setMinWidth(44);
+				int scaledWidth = MainController.scaleByZoom(44);
+				box.setMaxWidth(scaledWidth);
+				box.setMinWidth(scaledWidth);
 				ImageView readOnly = MainController.loadGraphic("status/locked.png");
 				box.getChildren().add(readOnly);
 				new CustomTooltip("This project has been added as a read-only project, it can not be edited on this server.").install(readOnly);
 			}
 			// get the latest collection, not the unchanged one
 			else if (deprecatedProperty.get() != null) {
-				box.setMaxWidth(28 * 2);
-				box.setMinWidth(28 * 2);
+				int scaledWidth = MainController.scaleByZoom(56);
+				box.setMaxWidth(scaledWidth);
+				box.setMinWidth(scaledWidth);
 				Node loadFixedSizeGraphic = MainController.loadFixedSizeGraphic("deprecated.png", 16, 25);
 				box.getChildren().add(loadFixedSizeGraphic);
 				new CustomTooltip("Please be careful when using this, it has been deprecated since: " + deprecatedProperty.get() + ". It may be removed in a future version.").install(loadFixedSizeGraphic);
 			}
 			// if it is deprecated, we don't care about the locking as much? otherwise it gets too cluttered
 			else if (lockedProperty.get()) {
-				box.setMaxWidth(28 * 2);
-				box.setMinWidth(28 * 2);
+				int scaledWidth = MainController.scaleByZoom(56);
+				box.setMaxWidth(scaledWidth);
+				box.setMinWidth(scaledWidth);
 				Node loadFixedSizeGraphic = MainController.loadFixedSizeGraphic("status/locked.png", 16, 25);
 				box.getChildren().add(loadFixedSizeGraphic);
 				new CustomTooltip("This node is locked to prevent accidental editing").install(loadFixedSizeGraphic);

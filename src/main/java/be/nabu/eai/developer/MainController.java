@@ -217,6 +217,7 @@ import be.nabu.eai.developer.util.Find;
 import be.nabu.eai.developer.util.FindNameFilter;
 import be.nabu.eai.developer.util.RepositoryValidatorService;
 import be.nabu.eai.developer.util.RunService;
+import be.nabu.eai.developer.util.FontManagerPanel;
 import be.nabu.eai.developer.util.StringComparator;
 import be.nabu.eai.repository.CollectionImpl;
 import be.nabu.eai.repository.EAIRepositoryUtils;
@@ -2351,7 +2352,7 @@ public class MainController implements Initializable, Controller {
 		buttons.setAlignment(Pos.CENTER);
 		buttons.getChildren().add(stop);
 		Label titleLabel = new Label("Nabu Developer");
-		titleLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold");
+		titleLabel.getStyleClass().add("h1");
 		titleLabel.setPadding(new Insets(10));
 		titleLabel.setAlignment(Pos.CENTER);
 		
@@ -2898,6 +2899,11 @@ public class MainController implements Initializable, Controller {
 				}
 			}
 		}
+
+		// Add Font Settings menu item to Help menu
+		MenuItem mniFontSettings = new MenuItem("Font Settings");
+		mniFontSettings.setOnAction(e -> FontManagerPanel.show());
+		mnuHelp.getItems().add(0, mniFontSettings);
 	}
 
 	private void initializeButtons() {
@@ -4280,35 +4286,59 @@ public class MainController implements Initializable, Controller {
 	public static Node loadFixedSizeGraphic(String name) {
 		return loadFixedSizeGraphic(name, 25);
 	}
-	
+
 	public static Node loadFixedSizeGraphic(String name, int size) {
 		return loadFixedSizeGraphic(name, size, size);
 	}
-	
+
 	public static Node loadFixedSizeGraphic(String name, int size, int containerSize) {
 		return wrapInFixed(loadGraphic(name), size, containerSize);
 	}
 
+	/**
+	 * Scales a base size by the current zoom factor.
+	 */
+	public static int scaleByZoom(int baseSize) {
+		int zoomLevel = be.nabu.eai.developer.util.FontManager.getInstance().getZoomLevel();
+		return (int) Math.round(baseSize * zoomLevel / 100.0);
+	}
+
 	public static Node wrapInFixed(ImageView graphic, int size, int containerSize) {
+		// Scale sizes by zoom factor
+		int scaledSize = scaleByZoom(size);
+		int scaledContainerSize = scaleByZoom(containerSize);
+
 		HBox box = new HBox();
-		if (graphic.getImage().getWidth() > size) {
-			graphic.setPreserveRatio(true);
-			graphic.setFitWidth(size);
-		}
-		if (graphic.getImage().getHeight() > size) {
-			graphic.setPreserveRatio(true);
-			graphic.setFitHeight(size);
-		}
+		graphic.setPreserveRatio(true);
+		graphic.setFitWidth(scaledSize);
+		graphic.setFitHeight(scaledSize);
 		box.getChildren().add(graphic);
 		box.setAlignment(Pos.CENTER);
-		box.setMinWidth(containerSize);
-		box.setMaxWidth(containerSize);
-		box.setPrefWidth(containerSize);
+		box.setMinWidth(scaledContainerSize);
+		box.setMaxWidth(scaledContainerSize);
+		box.setPrefWidth(scaledContainerSize);
 		return box;
 	}
 	
+	/**
+	 * Loads a graphic scaled by the current zoom factor.
+	 */
 	public static ImageView loadGraphic(String name) {
-		return new ImageView(loadImage(name));
+		return loadGraphic(name, 16);
+	}
+
+	/**
+	 * Loads a graphic scaled by the current zoom factor.
+	 * @param name The image resource name
+	 * @param baseSize The base size at 100% zoom
+	 */
+	public static ImageView loadGraphic(String name, int baseSize) {
+		ImageView graphic = new ImageView(loadImage(name));
+		int scaledSize = scaleByZoom(baseSize);
+		graphic.setPreserveRatio(true);
+		graphic.setFitWidth(scaledSize);
+		graphic.setFitHeight(scaledSize);
+		return graphic;
 	}
 	
 	private static Map<String, Image> images = new HashMap<String, Image>();

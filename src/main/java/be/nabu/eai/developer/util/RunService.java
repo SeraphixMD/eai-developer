@@ -63,6 +63,7 @@ import javafx.util.Callback;
 import be.nabu.eai.developer.ComplexContentEditor;
 import be.nabu.eai.developer.ComplexContentEditor.ValueWrapper;
 import be.nabu.eai.developer.MainController;
+import be.nabu.eai.developer.util.FontManager;
 import be.nabu.eai.repository.util.SystemPrincipal;
 import be.nabu.jfx.control.ace.AceEditor;
 import be.nabu.jfx.control.tree.Tree;
@@ -166,7 +167,8 @@ public class RunService {
 		
 		TabPane inputTabs = new TabPane();
 		AceEditor jsonEditor = new AceEditor();
-		
+		FontManager.getInstance().registerEditor(jsonEditor);
+
 		Button run = new Button("Run");
 		run.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override

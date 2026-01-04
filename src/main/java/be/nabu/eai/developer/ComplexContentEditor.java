@@ -542,8 +542,8 @@ public class ComplexContentEditor {
 			HBox graphicBox = new HBox();
 			graphicBox.setAlignment(Pos.CENTER);
 			graphicBox.getChildren().add(MainController.loadGraphic(ElementTreeItem.getIcon(wrapper.getElement().getType(), wrapper.getElement().getProperties())));
-			Integer minOccurs = ValueUtils.contains(MinOccursProperty.getInstance(), wrapper.getElement().getProperties()) 
-				? ValueUtils.getValue(MinOccursProperty.getInstance(), wrapper.getElement().getProperties()) 
+			Integer minOccurs = ValueUtils.contains(MinOccursProperty.getInstance(), wrapper.getElement().getProperties())
+				? ValueUtils.getValue(MinOccursProperty.getInstance(), wrapper.getElement().getProperties())
 				: null;
 			if (minOccurs == null || minOccurs > 0) {
 				graphicBox.getChildren().add(MainController.loadGraphic("types/mandatory.png"));

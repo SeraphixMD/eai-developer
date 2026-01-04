@@ -25,6 +25,7 @@ import javafx.scene.Node;
 import be.nabu.eai.developer.MainController;
 import be.nabu.eai.developer.api.ResourceManager;
 import be.nabu.eai.developer.api.ResourceManagerInstance;
+import be.nabu.eai.developer.util.FontManager;
 import be.nabu.jfx.control.ace.AceEditor;
 import be.nabu.libs.resources.api.ReadableResource;
 import be.nabu.libs.resources.api.Resource;
@@ -92,6 +93,7 @@ public class TextResourceManager implements ResourceManager {
 					throw new RuntimeException(e);
 				}
 				editor = new AceEditor();
+				FontManager.getInstance().registerEditor(editor);
 				editor.setContent(resource.getContentType(), content);
 				editor.subscribe(AceEditor.CHANGE, new EventHandler<Event>() {
 					@Override

@@ -19,6 +19,8 @@ package be.nabu.eai.developer;
 
 import java.net.URL;
 
+import be.nabu.eai.developer.util.FontManager;
+
 public class Themer {
 	public void load() {
 //		Font f = Font.loadFont(Themer.class.getResource("/theme/main/Lato-Regular.ttf").toExternalForm(), 12);
@@ -30,5 +32,8 @@ public class Themer {
 		}
 		// we want the combo boxes!
 		MainController.getInstance().setLeftAlignComboBox(true);
+
+		// Apply saved font settings
+		FontManager.getInstance().applyCurrentSettings();
 	}
 }

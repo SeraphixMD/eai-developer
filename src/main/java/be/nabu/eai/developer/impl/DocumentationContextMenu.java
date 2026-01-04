@@ -68,6 +68,7 @@ import be.nabu.eai.developer.managers.util.SimpleProperty;
 import be.nabu.eai.developer.managers.util.SimplePropertyUpdater;
 import be.nabu.eai.developer.util.Confirm;
 import be.nabu.eai.developer.util.EAIDeveloperUtils;
+import be.nabu.eai.developer.util.FontManager;
 import be.nabu.eai.developer.util.Confirm.ConfirmType;
 import be.nabu.eai.repository.DocumentationManager;
 import be.nabu.eai.repository.DocumentationManager.DocumentedImpl;
@@ -458,6 +459,7 @@ public class DocumentationContextMenu implements EntryContextMenuProvider {
 		properties.setPadding(new Insets(10));
 		MainController.getInstance().showProperties(updater, properties, true, repository, false);
 		AceEditor editor = new AceEditor();
+		FontManager.getInstance().registerEditor(editor);
 		editor.setContent("text/x-markdown", documented.getDescription());
 		
 		editor.subscribe(AceEditor.SAVE, saveHandler);

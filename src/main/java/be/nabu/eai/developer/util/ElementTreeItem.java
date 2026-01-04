@@ -228,11 +228,12 @@ public class ElementTreeItem implements RemovableTreeItem<Element<?>>, MovableTr
 	}
 	
 	private void internalRefreh(boolean includeChildren) {
-		leafProperty.set(!(itemProperty.get().getType() instanceof ComplexType) || (itemProperty.get().getType() instanceof BeanType && ((BeanType<?>) itemProperty.get().getType()).getBeanClass().equals(Object.class)));		
+		leafProperty.set(!(itemProperty.get().getType() instanceof ComplexType) || (itemProperty.get().getType() instanceof BeanType && ((BeanType<?>) itemProperty.get().getType()).getBeanClass().equals(Object.class)));
 		HBox graphicBox = new HBox();
+		graphicBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
 		graphicBox.getChildren().add(MainController.loadGraphic(getIcon(itemProperty.get().getType(), itemProperty.get().getProperties())));
-		Integer minOccurs = ValueUtils.contains(MinOccursProperty.getInstance(), itemProperty.get().getProperties()) 
-			? ValueUtils.getValue(MinOccursProperty.getInstance(), itemProperty.get().getProperties()) 
+		Integer minOccurs = ValueUtils.contains(MinOccursProperty.getInstance(), itemProperty.get().getProperties())
+			? ValueUtils.getValue(MinOccursProperty.getInstance(), itemProperty.get().getProperties())
 			: null;
 		if (minOccurs == null || minOccurs > 0) {
 			graphicBox.getChildren().add(MainController.loadGraphic("types/mandatory.png"));

@@ -76,7 +76,7 @@ public class ContentTreeItem implements TreeItem<Object> {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void refresh() {
-		leafProperty.set(!(definition.getType() instanceof ComplexType));		
+		leafProperty.set(!(definition.getType() instanceof ComplexType));
 		graphicProperty.set(MainController.loadGraphic(ElementTreeItem.getIcon(definition.getType(), definition.getProperties())));
 		if (definition.getType() instanceof ComplexType) {
 			children.clear();

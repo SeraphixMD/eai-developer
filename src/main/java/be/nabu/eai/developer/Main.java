@@ -50,6 +50,7 @@ import be.nabu.eai.developer.api.ConnectionTunnel;
 import be.nabu.eai.developer.api.TunnelableConnectionHandler;
 import be.nabu.eai.developer.impl.ConnectionTargetImpl;
 import be.nabu.eai.developer.impl.JSCHConnectionHandler;
+import be.nabu.eai.developer.util.FontSettings;
 import be.nabu.eai.developer.impl.SSHJConnectionHandler;
 import be.nabu.eai.developer.managers.util.EnumeratedSimpleProperty;
 import be.nabu.eai.developer.managers.util.SimpleProperty;
@@ -217,6 +218,9 @@ public class Main extends Application {
 		private String lastProfile;
 		private String lastDownloadPath;
 
+		// Font settings
+		private FontSettings fontSettings;
+
 		public List<ServerProfile> getProfiles() {
 			return profiles;
 		}
@@ -248,7 +252,15 @@ public class Main extends Application {
 		public void setQuerySheets(List<QuerySheet> querySheets) {
 			this.querySheets = querySheets;
 		}
-		
+
+		public FontSettings getFontSettings() {
+			return fontSettings;
+		}
+
+		public void setFontSettings(FontSettings fontSettings) {
+			this.fontSettings = fontSettings;
+		}
+
 	}
 	public enum Protocol {
 		HTTP, SSH, LOCAL

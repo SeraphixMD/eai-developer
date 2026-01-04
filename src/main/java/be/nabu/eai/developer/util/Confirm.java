@@ -72,7 +72,7 @@ public class Confirm {
 		label.setPrefRowCount(question.length() - question.replace("\n", "").length() + 1);
 //		Label label = new Label(question);
 //		label.setWrapText(true);
-		content.getChildren().addAll(MainController.loadGraphic(confirmType.getImage()), label);
+		content.getChildren().addAll(MainController.loadGraphic(confirmType.getImage(), 32), label);
 		content.prefWidthProperty().bind(vbox.widthProperty());
 		
 		final Stage stage = new Stage();
